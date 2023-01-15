@@ -2,7 +2,7 @@ import React from "react";
 import { BiListPlus } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { addTocart } from "../features/Cart/cartSlice";
+import { addTocart, removeFromCart } from "../features/Cart/cartSlice";
 
 const ProductCard = ({ product }) => {
   const { pathname } = useLocation()
@@ -22,17 +22,25 @@ const ProductCard = ({ product }) => {
       <p className='text-center font-semibold mb-3'>Rating: {product.rating}</p>
       <div className=' flex-1'>
         <ul className='space-y-2'>
-          {product.keyFeature.map((feature) => {
+          {product?.keyFeature?.map((feature) => {
             return <li className='text-sm '>{feature}</li>;
           })}
         </ul>
       </div>
+
       <div className='flex gap-2 mt-5'>
-        <button
+        {!pathname.includes('cart') && <button
           onClick={() => dispatch(addTocart(product))}
           className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
           Add to cart
-        </button>
+        </button>}
+
+        {pathname.includes('cart') && <button
+          onClick={() => dispatch(removeFromCart(product))}
+          className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
+          Remove From cart
+        </button>}
+
         <button
           title='Add to wishlist'
           className='bg-indigo-500  py-1 px-2 rounded-full'
