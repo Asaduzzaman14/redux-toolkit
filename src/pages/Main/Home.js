@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../../components/ProductCard';
 import { useDispatch, useSelector } from "react-redux";
-import { toggle, toggleBrands } from "../features/filter/filterSlice";
-import { getProducts } from "../features/product/productSlice";
+import { toggle, toggleBrands } from "../../features/filter/filterSlice";
+import { getProducts } from "../../features/product/productSlice";
 
 const Home = () => {
 
