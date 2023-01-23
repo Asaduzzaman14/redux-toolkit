@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { fetchProduct } from './productApi'
 
 const InitialProduct = {
     products: [],
@@ -7,11 +8,14 @@ const InitialProduct = {
     error: ''
 }
 export const getProducts = createAsyncThunk('products/getProducts', async () => {
-    const res = await fetch('http://localhost:5000/products')
 
-    const data = await res.json()
+    // const res = await fetch('http://localhost:5000/products')
+    // const data = await res.json()
+    // return data.data
 
-    return data.data
+    const products = fetchProduct()
+    console.log(products);
+    return products
 
 })
 
