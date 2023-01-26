@@ -17,7 +17,7 @@ const AddProduct = () => {
         if (!isLoading && postSuccess) {
             toast.success('Post added', { id: 'addProduct' })
             dispatch(togglePostSuccess())
-            reset()
+            // reset()
         }
         if (!isLoading && isError) {
             toast.error(error.message, { id: 'addProduct' })
@@ -74,7 +74,7 @@ const AddProduct = () => {
                 </div>
                 <div className='flex flex-col w-full max-w-xs'>
                     <label className='mb-2' htmlFor='price'>
-                        Image
+                        price
                     </label>
                     <input type='text' name='price' id='price' {...register("price")} />
                 </div>
