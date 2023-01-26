@@ -16,3 +16,7 @@ export const postProduct = async (productData) => {
     await axios.post('/product', productData)
 
 }
+
+export const deleteProduct = async (productId) => {
+    await axios.delete(`/product/${productId}`)
+}
