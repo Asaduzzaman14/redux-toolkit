@@ -3,19 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../features/product/productSlice";
 
 const ProductList = () => {
-    // const [products, setProducts] = useState([])
+
     const dispatch = useDispatch()
-
-    const filter = useSelector(state => state.filter)
-    const { stock, brand } = filter
-
     const { products, isLoading } = useSelector(state => state.products)
-
 
     useEffect(() => {
         dispatch(getProducts())
-
     }, [dispatch])
+
     return (
         <div class='flex flex-col justify-center items-center h-full w-full '>
             <div class='w-full max-w-7xl mx-auto rounded-lg  bg-white shadow-lg border border-gray-200'>

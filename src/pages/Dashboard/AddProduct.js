@@ -1,11 +1,28 @@
 import React from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { addProducts } from "../../features/product/productSlice";
+import { toast } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { addProducts, togglePostSuccess } from "../../features/product/productSlice";
 
 const AddProduct = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
+    const { isLoading, postSuccess, error, isError } = useSelector((state) => state.products)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (isLoading) {
+            toast.loading('Posting', { id: 'addProduct' })
+        }
+        if (!isLoading && postSuccess) {
+            toast.success('Post added', { id: 'addProduct' })
+            dispatch(togglePostSuccess())
+            reset()
+        }
+        if (!isLoading && isError) {
+            toast.error(error.message, { id: 'addProduct' })
+        }
+    }, [isLoading, isError, postSuccess, error])
 
     const submit = (data) => {
         const product = {
